@@ -4,9 +4,13 @@
 #include"init.h"
 
 #include <stdio.h>
+#include <string.h>
+#pragma warning (disable: 4996)
+
 int main()
 {
 	init();
 	run();
+
 	return 0;
 }

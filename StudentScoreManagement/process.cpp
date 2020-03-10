@@ -11,6 +11,7 @@
 
 #pragma warning(disable : 4996)
 
+// 链表头指针（全局）
 extern Node* g_Head;
 
 void _menu(int* option);
@@ -23,9 +24,26 @@ void _quit(void);
 void run()
 {
 	// 文件预读取
+	FILE* fp = fopen("data.txt", "r");
+	if (fp != NULL) {
+		char tmp_name[100];
+		int tmp_score;
+		// 跳过第一行
+		fscanf(fp, "%s\n", tmp_name);
+		memset(tmp_name, '\0', sizeof(tmp_name));
+		fscanf(fp, "%[^,],%d,\n", tmp_name, &tmp_score);
+		while (tmp_name[0] != '\0')
+		{
+			//逐行读取
+			inputStudent(tmp_name, tmp_score);
+			memset(tmp_name, '\0', sizeof(tmp_name));
+			fscanf(fp, "%[^,],%d,\n", tmp_name, &tmp_score);
+		}
+	}
 
-	int option = 0;
+
 	//主菜单循环
+	int option = 0;
 	while (1)
 	{
 		_menu(&option);
@@ -309,6 +327,7 @@ void _quit(void)
 		if (p != NULL)
 			for (; p != NULL; p = p->Next)
 				fprintf(fp, "%s,%d,\n", p->stu.name, p->stu.score);
+		fclose(fp);
 		system("CLS");
 		saveFigure();
 	}
