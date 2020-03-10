@@ -23,6 +23,19 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(handle, pos);
 }
 
+// 获取坐标函数
+void getxy(int *x, int *y)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coordScreen = {0, 0}; //光标位置
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+    if (GetConsoleScreenBufferInfo(hConsole, &csbi))
+    {
+        *x = csbi.dwCursorPosition.X;
+        *y = csbi.dwCursorPosition.Y;
+    }
+}
 void getPassword(char* p)
 {
     int j = 0;
@@ -89,7 +102,7 @@ void getKeyboard(char* keyboard)
 ::param: 输入键值图
 ::return:返回确认编号
 */
-int mapMove(int keyboard_map[10][5], int n)
+int mapMove(int keyboard_map[100][5], int n)
 {
     char keyboard = '|';
     char* p_keyboard = &keyboard;

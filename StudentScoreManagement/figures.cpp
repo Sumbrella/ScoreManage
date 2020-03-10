@@ -225,7 +225,19 @@ void sortFigure()
 
 void deleteFigure()
 {
-	;
+	char confirm_figure_map[20][60] =
+	{
+		{"Now you have datas ¡ú¡ú¡ú"},
+		{"Please choise you want to delete"}
+	};
+	voidFigure();
+	int x = 15, y = 4;
+	for (int i = 0; i < 2; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", confirm_figure_map[i]);
+	}
+
 }
 
 

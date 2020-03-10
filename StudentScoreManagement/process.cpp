@@ -57,7 +57,7 @@ void run()
 			case 3:
 				_sort(); break;
 			case 4:
-				break;
+				_delete(); break;
 			case 5:
 				_count(); break;
 			case 6:
@@ -256,6 +256,67 @@ void swap(Node* p, Node* n)
 }
 
 
+void _delete()
+{
+	system("CLS");
+	deleteFigure();
+	//打印已有数据
+	int keyboard_map[100][5];
+	int i = 0;
+	int x, y;
+
+	gotoxy(60, 1);
+	Node* p = g_Head;
+	printf("\t姓名\t成绩\n");
+	// 打印退出选项
+	gotoxy(60, i + 2);
+	printf("\t取消\tback\t<-");
+	getxy(&x, &y);
+	//退出选项的储存坐标信息
+	keyboard_map[i][0] = x;
+	keyboard_map[i][1] = y;
+	keyboard_map[i][2] = i;
+	i++;
+	if (p != NULL)
+		for (; p != NULL; p = p->Next)
+		{
+			gotoxy(60, i + 2);
+			printf("\t%s\t%d\t<-", p->stu.name, p->stu.score);
+			getxy(&x, &y);
+			//储存坐标信息
+			keyboard_map[i][0] = x;
+			keyboard_map[i][1] = y;
+			keyboard_map[i][2] = i;
+			
+			//递增i
+			i++;
+		}
+	int option = mapMove(keyboard_map, i);
+	if (option != 0)
+	{
+		// 找到该学生的指针
+		Node* p = g_Head;
+		Node* p_pre = NULL;
+		for (int j = 1; j < option; p_pre = p, p = p->Next, j++)
+			continue;
+
+		// 如果删除的是第一个学生
+		if (option == 1)
+			g_Head = g_Head->Next;
+		else
+			p_pre->Next = p->Next;
+		gotoxy(0, 12);
+		printf("删除成功！\n");
+	}
+	// 直接退出
+	else
+	{
+		gotoxy(0, 12);
+		printf("未删除数据\n!");
+	}
+	system("pause");
+}
+
 void _count()
 {
 	system("CLS");
@@ -293,6 +354,7 @@ void _count()
 }
 
 
+
 void _quit(void)
 {
 	system("CLS");
@@ -311,8 +373,8 @@ void _quit(void)
 
 	int keyboard_map[5][5] =
 	{
-		{31, 6, 1},
-		{32, 6, 2}
+		{32, 6, 1},
+		{32, 7, 2}
 	};
 	int option;
 	int n = 2;
