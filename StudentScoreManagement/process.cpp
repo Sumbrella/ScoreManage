@@ -81,7 +81,8 @@ void _insert(void)
 	memset(tmp_name, '\0', sizeof(tmp_name));
 
 	gotoxy(32, 4);
-	scanf("%s", tmp_name);
+	rewind(stdin);
+	scanf("%[^\n]", tmp_name);
 
 	if (tmp_name[0] != '\0')
 	{
@@ -108,7 +109,7 @@ void _insert(void)
 		{40, 8, 1},
 		{40, 9, 2},
 	};
-	option = mapMove(keyboard_map, n);
+	option = keyboard_map[mapMove(keyboard_map, n)][2];
 	if (option == 1 && ok)
 	{
 		inputStudent(tmp_name, tmp_score);
@@ -128,6 +129,7 @@ void _search(void)
 	memset(tmp_name, '\0', sizeof(tmp_name));
 
 	gotoxy(32, 4);
+	rewind(stdin);
 	scanf("%[^\n]", tmp_name);
 
 	if (tmp_name[0] != '\0')
