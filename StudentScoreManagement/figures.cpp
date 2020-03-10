@@ -17,6 +17,7 @@ void preStart(void)
 	printf("请使用WSAD或键盘上的↑←→进行移动,\n");
 	printf("使用回车或是空格键进行确认。\n");
 	printf("本程序实现了学生的插入、寻找、排序、删除、统计等功能\n");
+	printf("      密码为 ：123456");
 	printf("\n       祝您使用愉快~~~~\n");
 	system("pause");
 }
