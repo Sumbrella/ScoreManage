@@ -43,7 +43,7 @@ void run()
 			case 5:
 				_count(); break;
 			case 6:
-				return;
+				_quit(); return;
 		}
 		gotoxy(0, 12);
 	}
@@ -94,10 +94,11 @@ void _insert(void)
 			gotoxy(32, 6);
 			printf("_________");
 			gotoxy(32, 6);
-			printf("请输入正确的分数！");
+			printf("分数错误!");
 			Sleep(500);
 			gotoxy(32, 6);
 			printf("_________");
+			gotoxy(32, 6);
 			
 			scanf("%d", &tmp_score);
 		}
@@ -204,16 +205,15 @@ void _bubbleSortA()
 void swap(Node* p, Node* n);
 void _bubbleSortD()
 {
-	Node* Head = g_Head;
 	Node* tail = NULL;
-	Node* cur = NULL;
-	Node* next = NULL;
+	Node* cur;
+	Node* next;
 	if (g_Head == NULL) return;
 	else
 	{
-		while (Head != tail)
+		while (g_Head != tail)
 		{
-			for (cur = Head, next = Head->Next; next != tail; cur = cur->Next)
+			for (cur = g_Head, next = cur->Next; cur->Next != tail; cur = cur->Next, next = next->Next)
 			{
 				if (cur->stu.score < next->stu.score)
 					swap(cur, next);
@@ -272,4 +272,47 @@ void _count()
 	}
 	gotoxy(0, 12);
 	system("pause");
+}
+
+
+void _quit(void)
+{
+	system("CLS");
+	confirmFigure();
+	// 打印已有的数据
+	int i = 1;
+	gotoxy(60, i);
+	Node* p = g_Head;
+	printf("\t姓名\t成绩\n");
+	if (p != NULL)
+		for (; p != NULL; p = p->Next)
+		{
+			gotoxy(60, ++i);
+			printf("\t%s\t%d\n", p->stu.name, p->stu.score);
+		}
+
+	int keyboard_map[5][5] =
+	{
+		{31, 6, 1},
+		{32, 6, 2}
+	};
+	int option;
+	int n = 2;
+	option = keyboard_map[mapMove(keyboard_map, n)][2];
+	if (option == 1)
+	{
+		FILE* fp = NULL;
+		fp = fopen("data.txt","w");
+
+		fprintf(fp, "姓名,成绩,\n"); //写入行索引
+		Node* p = g_Head;
+		if (p != NULL)
+			for (; p != NULL; p = p->Next)
+				fprintf(fp, "%s,%d,\n", p->stu.name, p->stu.score);
+		system("CLS");
+		saveFigure();
+	}
+	system("ClS");
+	byeFigure();
+	gotoxy(0, 12);
 }

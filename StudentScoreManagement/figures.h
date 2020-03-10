@@ -13,8 +13,9 @@ void searchFigure(void);
 void sortFigure(void);
 void deleteFigure(void);
 void countFigure(void);
-void quitFigure(void);
-void saveFigure(void);
 void confirmFigure(void);
+void saveFigure(void);
+void byeFigure(void);
+
 
 #endif

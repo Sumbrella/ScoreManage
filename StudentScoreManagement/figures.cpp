@@ -248,19 +248,72 @@ void countFigure()
 }
 
 
-void quitFigure()
-{
-	;
-}
-
-
 void confirmFigure()
 {
-	;
+	voidFigure();
+	char confirm_figure_map[20][60] = 
+	{
+		{"Now you have datas →→→"},
+		{"                         "},
+		{"   Do you want to Save?  "},
+		{"          Yes <-         "},
+		{"          No  <-         "},
+	};
+	int x = 15, y = 3;
+	for (int i = 0; i < 5; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", confirm_figure_map[i]);
+	}
 }
 
 
-void saveFigure()
+void saveFigure(void)
 {
-	;
+	char save_figure_map[20][60] =
+	{
+		{"┌───────────────────┐"},
+		{"│                   │"},
+		{"└───────────────────┘"},
+		{"       Saveing...  "},
+	};
+	int x = 19; int y = 4;
+	voidFigure();
+	gotoxy(x, y);
+	for (int i = 0; i < 4; i++)
+	{
+		printf("%s", save_figure_map[i]);
+		gotoxy(x, y + i + 1);
+	}
+
+	// 动态加载
+	gotoxy(20, 5);
+	printf("[][][]");
+
+	for (int a = 0; a < 3; a++)
+		for (int j = 6; j + 6 < 30; j += 2)
+		{
+			gotoxy(20 + j % 18, 5);
+			printf("[]");
+			gotoxy(20 + (j - 6) % 19, 5);
+			printf("  ");
+			Sleep(200);
+		}
+}
+
+void byeFigure()
+{
+	char bye_figure_map[20][60] =
+	{
+		{"Good Bye !"},
+		{"欢迎下次使用！"}
+	};
+	int x = 19; int y = 4;
+	voidFigure();
+	for (int i = 0; i < 2; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", bye_figure_map[i]);
+	}
+
 }
