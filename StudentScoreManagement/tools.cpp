@@ -93,6 +93,7 @@ int mapMove(int keyboard_map[10][5], int n)
 {
     char keyboard = '|';
     char* p_keyboard = &keyboard;
+    //i ´¢´æÎ»ÖÃ
     int i = 0;
     gotoxy(keyboard_map[i][0], keyboard_map[i][1]);
     while (keyboard != '\r' && keyboard != ' ')
@@ -126,4 +127,21 @@ void inputStudent(char name[100], int score)
         pNewNode->Next = g_Head;
         g_Head = pNewNode;
     }
+}
+
+
+// Ñ°ÕÒÑ§Éú
+bool searchStudent(char* name, int* score)
+{
+    Node* p = NULL;
+    bool ok = false;
+    for (p = g_Head; p != NULL; p = p->Next)
+    {
+        if (isSame(p->stu.name, name, strlen(name)))
+        {
+            *score = p->stu.score;
+            ok = true;
+        }
+    }
+    return ok;
 }

@@ -32,9 +32,9 @@ void run()
 		switch (option) 
 		{
 			case 1:
-				_insert();
+				_insert(); break;
 			case 2:
-				_search();
+				_search(); break;
 			case 3:
 				break;
 			case 4:
@@ -53,6 +53,7 @@ void _menu(int *option)
 {
 	system("CLS");
 	menuFigure();
+	gotoxy(32, 3);
 	int no;
 	int keyboard_map[7][5] =
 	{
@@ -80,7 +81,8 @@ void _insert(void)
 	memset(tmp_name, '\0', sizeof(tmp_name));
 
 	gotoxy(32, 4);
-	scanf("%[^\n]", tmp_name);
+	scanf("%s", tmp_name);
+
 	if (tmp_name[0] != '\0')
 	{
 		gotoxy(32, 6);
@@ -111,7 +113,6 @@ void _insert(void)
 	{
 		inputStudent(tmp_name, tmp_score);
 	}
-	gotoxy(0, 12);
 }
 
 
@@ -126,11 +127,25 @@ void _search(void)
 
 	memset(tmp_name, '\0', sizeof(tmp_name));
 
+	gotoxy(32, 4);
 	scanf("%[^\n]", tmp_name);
 
 	if (tmp_name[0] != '\0')
 	{
 		is_find = searchStudent(tmp_name, &tmp_score);
+		if (is_find)
+		{
+			gotoxy(32, 6);
+			printf("%d", tmp_score);
+		}
+		if (!is_find)
+		{
+			gotoxy(0, 12);
+			printf("No such person\n");
+			system("pause");
+		}
 	}
+	gotoxy(40, 9);
+	getch();
 }
 
