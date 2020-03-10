@@ -42,10 +42,24 @@ void getPassword(char* p)
             {
                 printf("*");
             }
-            if (i < 6)
-                *(p + (i)) = c;
+            *(p + (i)) = c;
             i++; j++;
         }
         c = getch();
     }
+}
+
+// 比较两个数组是否相同
+int isSame(char* a, char* b, int n)
+{
+    int ok = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (*(a + i) != *(b + i))
+        {
+            ok = 0;
+            break;
+        }
+    }
+    return ok;
 }
