@@ -3,11 +3,15 @@
 #include<windows.h>
 #include<string.h>
 
+#include "node.h"
+
 #pragma warning(disable:4996)
 
 /*
 	封装了一些程序中频繁调用的函数
 */
+
+Node* g_Head = NULL;
 
 //坐标函数
 void gotoxy(int x, int y)
@@ -103,4 +107,23 @@ int mapMove(int keyboard_map[10][5], int n)
         getKeyboard(p_keyboard);
     }
     return i;
+}
+
+
+//实现输入学生
+void inputStudent(char name[100], int score)
+{
+    Node* pNewNode = (Node*)malloc(sizeof(Node));
+    pNewNode->Next = NULL;
+    memset(pNewNode->stu.name, '\0', sizeof(pNewNode->stu.name));
+    memcpy(pNewNode->stu.name, name, sizeof(name));
+    pNewNode->stu.score = score;
+
+    if (g_Head == NULL)
+        g_Head = pNewNode;
+    else
+    {
+        pNewNode->Next = g_Head;
+        g_Head = pNewNode;
+    }
 }

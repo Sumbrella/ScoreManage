@@ -167,13 +167,43 @@ void menuFigure(void)
 
 void insertFigure() 
 {
-	;
+	char insert_figure_map[20][60] =
+	{
+		{"StudentName : _________"},
+		{"                       "},
+		{"StudentScore: _________"},
+		{"                       "},
+		{"             certain <-"},
+		{"             back    <-"}
+	};
+	int x = 18, y = 4;
+	voidFigure();
+	for (int i = 0; i < 6; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", insert_figure_map[i]);
+	}
 }
 
 
 void searchFigure()
 {
-	;
+	char search_figure_map[20][60] =
+	{
+		{"StudentName : _________"},
+		{"                       "},
+		{"StudentScore: _________"},
+		{"                       "},
+		{"						 "},
+		{"             back    <-"}
+	};
+	int x = 18, y = 4;
+	voidFigure();
+	for (int i = 0; i < 6; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", search_figure_map[i]);
+	}
 }
 void sortFigure()
 {

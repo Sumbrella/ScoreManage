@@ -18,8 +18,4 @@ typedef struct _NODE
 	_NODE* Next;
 }Node;
 
-// Á´±í±íÍ·
-extern Node* Head = NULL;
-
-
 #endif

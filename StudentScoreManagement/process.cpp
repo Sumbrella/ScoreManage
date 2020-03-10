@@ -9,6 +9,9 @@
 #include"figures.h"
 #include"process.h"
 
+#pragma warning(disable : 4996)
+
+extern Node* p_Head;
 
 void _menu(int* option);
 void _insert(void);
@@ -29,9 +32,9 @@ void run()
 		switch (option) 
 		{
 			case 1:
-				break;
+				_insert();
 			case 2:
-				break;
+				_search();
 			case 3:
 				break;
 			case 4:
@@ -67,5 +70,67 @@ void _menu(int *option)
 
 void _insert(void)
 {
+	system("CLS");
+	insertFigure();
 
+	char tmp_name[100];
+	int tmp_score;
+	bool ok = false;
+	
+	memset(tmp_name, '\0', sizeof(tmp_name));
+
+	gotoxy(32, 4);
+	scanf("%[^\n]", tmp_name);
+	if (tmp_name[0] != '\0')
+	{
+		gotoxy(32, 6);
+		scanf("%d", &tmp_score);
+		while (tmp_score > 100 || tmp_score < 0)
+		{
+			gotoxy(32, 6);
+			printf("_________");
+			gotoxy(32, 6);
+			printf("请输入正确的分数！");
+			Sleep(500);
+			gotoxy(32, 6);
+			printf("_________");
+			
+			scanf("%d", &tmp_score);
+		}
+		ok = 1;
+	}
+	int option;
+	int n = 2;
+	int keyboard_map[2][5] =
+	{
+		{40, 8, 1},
+		{40, 9, 2},
+	};
+	option = mapMove(keyboard_map, n);
+	if (option == 1 && ok)
+	{
+		inputStudent(tmp_name, tmp_score);
+	}
+	gotoxy(0, 12);
 }
+
+
+void _search(void)
+{
+	system("ClS");
+	searchFigure();
+
+	char tmp_name[100];
+	int tmp_score;
+	bool is_find;
+
+	memset(tmp_name, '\0', sizeof(tmp_name));
+
+	scanf("%[^\n]", tmp_name);
+
+	if (tmp_name[0] != '\0')
+	{
+		is_find = searchStudent(tmp_name, &tmp_score);
+	}
+}
+
