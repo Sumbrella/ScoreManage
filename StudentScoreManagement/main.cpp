@@ -6,8 +6,7 @@
 #include <stdio.h>
 int main()
 {
-	//init();
+	init();
 	run();
-	
 	return 0;
 }

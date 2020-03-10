@@ -11,7 +11,7 @@
 
 #pragma warning(disable : 4996)
 
-extern Node* p_Head;
+extern Node* g_Head;
 
 void _menu(int* option);
 void _insert(void);
@@ -36,7 +36,7 @@ void run()
 			case 2:
 				_search(); break;
 			case 3:
-				break;
+				_sort(); break;
 			case 4:
 				break;
 			case 5:
@@ -151,3 +151,87 @@ void _search(void)
 	getch();
 }
 
+void _bubbleSortA(void);
+void _bubbleSortD(void);
+void _sort(void)
+{
+	system("CLS");
+	sortFigure();
+	int n = 2;
+	int i,option;
+	int keyboard_map[2][5] =
+	{
+		{39, 5, 1},
+		{39, 6, 2},
+	};
+	i = mapMove(keyboard_map, n);
+	option = keyboard_map[i][2];
+	if (option == 1)
+		_bubbleSortA();
+	else
+		_bubbleSortD();
+
+	gotoxy(0, 12);
+	printf("\tÐÕÃû\t³É¼¨\n");
+	Node* p = NULL;
+	for (p = g_Head; p != NULL; p = p->Next)
+		printf("\t%s\t%d\n", p->stu.name, p->stu.score);
+	system("pause");
+}
+
+void swap(Node* p, Node* n);
+void _bubbleSortA()
+{
+	Node* tail = NULL;
+	Node* cur;
+	Node* next;
+	if (g_Head == NULL) return;
+	else
+	{
+		while (g_Head != tail)
+		{
+			for (cur = g_Head, next = cur->Next; cur->Next != tail; cur = cur->Next, next= next->Next)
+			{
+				if (cur->stu.score > next->stu.score)
+					swap(cur, next);
+			}
+			tail = cur;
+		}
+	}
+}
+
+void swap(Node* p, Node* n);
+void _bubbleSortD()
+{
+	Node* Head = g_Head;
+	Node* tail = NULL;
+	Node* cur = NULL;
+	Node* next = NULL;
+	if (g_Head == NULL) return;
+	else
+	{
+		while (Head != tail)
+		{
+			for (cur = Head, next = Head->Next; next != tail; cur = cur->Next)
+			{
+				if (cur->stu.score < next->stu.score)
+					swap(cur, next);
+			}
+			tail = cur;
+		}
+	}
+}
+
+void swap(Node* p, Node* n)
+{
+	Node tmp;
+	memset(tmp.stu.name, '\0', sizeof(tmp.stu.name));
+
+	tmp.stu.score = p->stu.score;
+	p->stu.score = n->stu.score;
+	n->stu.score = tmp.stu.score;
+
+	memcpy(tmp.stu.name, p->stu.name, sizeof(p->stu.name));
+	memcpy(p->stu.name, n->stu.name, sizeof(n->stu.name));
+	memcpy(n->stu.name, tmp.stu.name, sizeof(tmp.stu.name));
+}

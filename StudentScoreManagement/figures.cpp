@@ -118,7 +118,7 @@ void welcomeFigure()
 		{
 			gotoxy(x + i, y + j);
 			printf("%c", welcome_figure_map[y + j][x + i]);
-			Sleep(20);
+			Sleep(5);
 		}
 	//й╣ожиак╦
 	for (int z = 0; z < 3; z++)
@@ -207,7 +207,19 @@ void searchFigure()
 }
 void sortFigure()
 {
-	;
+	char sort_figure_map[20][60] =
+	{
+		{"Sort Ascendente  <-"},
+		{"Sort Descendente <-"},
+	};
+	voidFigure();
+	int x = 20, y = 5;
+	for (int i = 0; i < 2; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", sort_figure_map[i]);
+	}
+
 }
 
 
