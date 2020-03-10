@@ -18,3 +18,34 @@ void gotoxy(int x, int y)
 	pos.Y = y;
 	SetConsoleCursorPosition(handle, pos);
 }
+
+void getPassword(char* p)
+{
+    int j = 0;
+    char c;
+    c = getch();
+    for (int i = 0; c != ' ' && c != '\r';)
+    {
+        if (c == '\b')
+        {
+            if (j > 0 && i > 0)
+            {
+                if (j <= 12)
+                    printf("\b \b");
+                i--;
+                j--;
+            }
+        }
+        else
+        {
+            if (j < 12)
+            {
+                printf("*");
+            }
+            if (i < 6)
+                *(p + (i)) = c;
+            i++; j++;
+        }
+        c = getch();
+    }
+}
