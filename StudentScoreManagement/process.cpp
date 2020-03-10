@@ -17,6 +17,7 @@ void _menu(int* option);
 void _insert(void);
 void _search(void);
 void _sort(void);
+void _count(void);
 void _delete(void);
 void _quit(void);
 void run()
@@ -40,7 +41,7 @@ void run()
 			case 4:
 				break;
 			case 5:
-				break;
+				_count(); break;
 			case 6:
 				return;
 		}
@@ -234,4 +235,41 @@ void swap(Node* p, Node* n)
 	memcpy(tmp.stu.name, p->stu.name, sizeof(p->stu.name));
 	memcpy(p->stu.name, n->stu.name, sizeof(n->stu.name));
 	memcpy(n->stu.name, tmp.stu.name, sizeof(tmp.stu.name));
+}
+
+
+void _count()
+{
+	system("CLS");
+	countFigure();
+	// 17, 4
+	int maximum, minimum, sum = 0, number = 0;
+	float average;
+	Node* p = g_Head;
+	if (p != NULL)
+	{
+		maximum = minimum = p->stu.score;
+		number = 1;
+		sum += p->stu.score;
+		for (p = g_Head->Next; p != NULL; p = p->Next)
+		{
+			if (p->stu.score > maximum)
+				maximum = p->stu.score;
+			if (p->stu.score < minimum)
+				minimum = p->stu.score;
+			sum += p->stu.score;
+			number++;
+		}
+		average = sum / (float)number;
+		gotoxy(32, 4);
+		printf("%d", maximum);
+		gotoxy(32, 5);
+		printf("%d", minimum);
+		gotoxy(32, 6);
+		printf("%.2f", average);
+		gotoxy(32, 7);
+		printf("%d", number);
+	}
+	gotoxy(0, 12);
+	system("pause");
 }

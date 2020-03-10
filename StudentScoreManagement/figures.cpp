@@ -231,7 +231,20 @@ void deleteFigure()
 
 void countFigure()
 {
-	;
+	char count_figure_map[20][60] = 
+	{
+		{"  MaxScore  :  "},
+		{"  MinScore  :  "},
+		{"AverageScore:  "},
+		{"   Number   :  "}
+	};
+	voidFigure();
+	int x = 17, y = 4;
+	for (int i = 0; i < 4; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", count_figure_map[i]);
+	}
 }
 
 
