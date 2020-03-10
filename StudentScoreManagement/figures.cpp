@@ -53,12 +53,31 @@ void loadFigure(void)
 		{"©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼"},
 		{"       Loading...  "},
 	};
+	char void_figure_map[20][60] =
+	{
+		{"           ______________________________________\n"},
+		{"          |      Student Score Mange System      |\n"},
+		{"          |                                      |\n"},
+		{"          |                                      |\n"},
+		{"          |                                      |\n"},
+		{"          |                                      |\n"},
+		{"          |                                      |\n"},
+		{"          |                                      |\n"},
+		{"          |                                      |\n"},
+		{"          |                                      |\n"},
+		{"          |______________________________________|\n"}
+	};
+	for (int z = 0; z <= 10; z++)
+	{
+		printf("%s", void_figure_map[z]);
+		Sleep(150);
+	}
 	int x = 19; int y = 4;
-	voidFigure();
 	gotoxy(x, y);
 	for (int i = 0; i < 4; i++)
 	{
 		printf("%s", load_figure_map[i]);
+		Sleep(150);
 		gotoxy(x, y + i + 1);
 	}
 

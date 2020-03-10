@@ -15,6 +15,7 @@ and theirs method.
 void init(void)
 {
 	preStart();
+	system("color 70");
 	system("CLS");
 	loadFigure();
 	system("CLS");
