@@ -6,7 +6,6 @@
 #include"init.h"
 #include"tools.h"
 #include"figures.h"
-#include"process.h"
 /*
 This package include the init figures 
 and theirs method.

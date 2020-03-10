@@ -7,5 +7,13 @@ void loadFigure(void);
 void passwordFigure(void);
 void welcomeFigure(void);
 
+void menuFigure(void);
+void insertFigure(void);
+void searchFigure(void);
+void sortFigure(void);
+void deleteFigure(void);
+void quitFigure(void);
+void saveFigure(void);
+void confirmFigure(void);
 
 #endif

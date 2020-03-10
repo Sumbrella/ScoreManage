@@ -63,3 +63,44 @@ int isSame(char* a, char* b, int n)
     }
     return ok;
 }
+
+// 得到用户的输入，转化为w和d
+void getKeyboard(char* keyboard)
+{
+    char ch1, ch2;
+    ch1 = getch();
+    if (ch1 == 'w' || ch1 == 'W')      ch1 = 'w';
+    else if (ch1 == 's' || ch1 == 'S') ch1 = 's';
+    else if (ch1 == -32)
+    {
+        ch2 = getch();
+        if (ch2 == 72) ch1 = 'w';
+        else if (ch2 == 80) ch1 = 's';
+    }
+    *keyboard = ch1;
+}
+
+// 指针移动函数
+/*
+::param: 输入键值图
+::return:返回确认编号
+*/
+int mapMove(int keyboard_map[10][5], int n)
+{
+    char keyboard = '|';
+    char* p_keyboard = &keyboard;
+    int i = 0;
+    gotoxy(keyboard_map[i][0], keyboard_map[i][1]);
+    while (keyboard != '\r' && keyboard != ' ')
+    {
+        if (keyboard == 'w')      i--;
+        else if (keyboard == 's') i++;
+
+        // 实现指针上下反转
+        if (i >= n) i -= n;
+        if (i < 0) i += n;
+        gotoxy(keyboard_map[i][0], keyboard_map[i][1]);
+        getKeyboard(p_keyboard);
+    }
+    return i;
+}

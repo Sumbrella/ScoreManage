@@ -127,7 +127,7 @@ void welcomeFigure()
 			for (int j = 0; j < 8; j++)
 			{
 				gotoxy(x + i, y + j);
-				printf(" ", welcome_figure_map[y + j][x + i]);
+				printf(" ");
 			}
 		Sleep(100);
 
@@ -140,4 +140,72 @@ void welcomeFigure()
 		Sleep(100);
 	}
 	gotoxy(0, 12);
+}
+
+void menuFigure(void)
+{
+	char menu_figure_map[20][30] =
+	{
+		{"INSERT <-"},
+		{"SEARCH <-"},
+		{"SORT   <-"},
+		{"DELETE <-"},
+		{"COUNT  <-"},
+		{"EXIT   <-"}
+	};
+	voidFigure();
+	int x = 24, y = 3;
+	gotoxy(x, y);
+	for (int i = 0; i < 6; i++)
+	{
+		gotoxy(x, y + i);
+		printf("%s", menu_figure_map[i]);
+	}
+
+	gotoxy(0, 12);
+}
+
+void insertFigure() 
+{
+	;
+}
+
+
+void searchFigure()
+{
+	;
+}
+void sortFigure()
+{
+	;
+}
+
+
+void deleteFigure()
+{
+	;
+}
+
+
+void countFigure()
+{
+	;
+}
+
+
+void quitFigure()
+{
+	;
+}
+
+
+void confirmFigure()
+{
+	;
+}
+
+
+void saveFigure()
+{
+	;
 }
