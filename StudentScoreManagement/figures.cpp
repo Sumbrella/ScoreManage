@@ -99,7 +99,7 @@ void loadFigure(void)
 // 输入密码界面
 void passwordFigure()
 {
-	char password_figure_map[20][60]
+	char password_figure_map[20][60] = 
 	{
 		{"┌─────┐  Administrator"},
 		{"│ []│  输入密码"},
